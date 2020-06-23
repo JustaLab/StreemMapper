@@ -60,7 +60,7 @@ final class ConvertibleValueTests: XCTestCase {
         struct Test: Mappable {
             let URLs: [URL]?
             init(map: Mapper) {
-                self.URLs = map.from(field: "urls")
+                self.URLs = map.optionalFrom(field: "urls")
             }
         }
 
@@ -72,7 +72,7 @@ final class ConvertibleValueTests: XCTestCase {
         struct Test: Mappable {
             let URLs: [URL]?
             init(map: Mapper) {
-                self.URLs = map.from(field: "urls")
+                self.URLs = map.optionalFrom(field: "urls")
             }
         }
 
@@ -96,7 +96,7 @@ final class ConvertibleValueTests: XCTestCase {
         struct Test: Mappable {
             let URLs: [URL]?
             init(map: Mapper) {
-                self.URLs = map.from(field: "urls")
+                self.URLs = map.optionalFrom(field: "urls")
             }
         }
 
@@ -108,7 +108,7 @@ final class ConvertibleValueTests: XCTestCase {
         struct Test: Mappable {
             let URL: Foundation.URL?
             init(map: Mapper) {
-                self.URL = map.from(fields: ["a", "b"])
+                self.URL = map.optionalFrom(fields: ["a", "b"])
             }
         }
 
@@ -120,7 +120,7 @@ final class ConvertibleValueTests: XCTestCase {
         struct Test: Mappable {
             let URL: Foundation.URL?
             init(map: Mapper) {
-                self.URL = map.from(fields: ["a", "b"])
+                self.URL = map.optionalFrom(fields: ["a", "b"])
             }
         }
 
@@ -146,7 +146,7 @@ final class ConvertibleValueTests: XCTestCase {
             let dictionary: [String: Int]?
 
             init(map: Mapper) throws {
-                self.dictionary = map.from(field: "foo")
+                self.dictionary = map.optionalFrom(field: "foo")
             }
         }
 
@@ -172,7 +172,7 @@ final class ConvertibleValueTests: XCTestCase {
             let dictionary: [String: Int]?
 
             init(map: Mapper) throws {
-                self.dictionary = map.from(field: "foo")
+                self.dictionary = map.optionalFrom(field: "foo")
             }
         }
 

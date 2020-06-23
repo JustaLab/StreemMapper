@@ -30,7 +30,7 @@ final class OptionalValueTests: XCTestCase {
         struct Test: Mappable {
             let string: [String]?
             init(map: Mapper) {
-                self.string = map.from(field: "foo")
+                self.string = map.optionalFrom(field: "foo")
             }
         }
 
@@ -42,7 +42,7 @@ final class OptionalValueTests: XCTestCase {
         struct Test: Mappable {
             let strings: [String]?
             init(map: Mapper) {
-                self.strings = map.from(field: "strings")
+                self.strings = map.optionalFrom(field: "strings")
             }
         }
 
@@ -54,7 +54,7 @@ final class OptionalValueTests: XCTestCase {
         struct Test: Mappable {
             let string: String?
             init(map: Mapper) throws {
-                self.string = map.from(fields: ["a", "b", "c" ])
+                self.string = map.optionalFrom(fields: ["a", "b", "c" ])
             }
         }
 
@@ -66,7 +66,7 @@ final class OptionalValueTests: XCTestCase {
         struct Test: Mappable {
             let string: String?
             init(map: Mapper) {
-                self.string = map.from(fields: ["a", "b"])
+                self.string = map.optionalFrom(fields: ["a", "b"])
             }
         }
 

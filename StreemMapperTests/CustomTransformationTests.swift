@@ -7,8 +7,8 @@ final class CustomTransformationTests: XCTestCase {
             let value: Int
             init(map: Mapper) throws {
                 value = try map.from(field: "value", transformation: { thing in
-                    if let a = thing as? Int {
-                        return a + 1
+                    if let val = thing as? Int {
+                        return val + 1
                     } else {
                         return 0
                     }

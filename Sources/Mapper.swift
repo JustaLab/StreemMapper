@@ -59,7 +59,7 @@ public struct Mapper {
      - returns: The value for the given field, if it can be converted to the expected type T otherwise nil
      */
 
-    public func from<T: RawRepresentable>(field: String) -> T? {
+    public func optionalFrom<T: RawRepresentable>(field: String) -> T? {
         return try? self.from(field: field)
     }
 
@@ -198,7 +198,7 @@ public struct Mapper {
      - returns: The value for the given field, if it can be converted to the expected type T otherwise nil
      */
 
-    public func from<T: Mappable>(field: String) -> T? {
+    public func optionalFrom<T: Mappable>(field: String) -> T? {
         return try? self.from(field: field)
     }
 
@@ -215,7 +215,7 @@ public struct Mapper {
      - returns: The value for the given field, if it can be converted to the expected type [T]
      */
 
-    public func from<T: Mappable>(field: String) -> [T]? {
+    public func optionalFrom<T: Mappable>(field: String) -> [T]? {
         return try? self.from(field: field)
     }
 
@@ -307,7 +307,7 @@ public struct Mapper {
      - returns: The value for the given field, if it can be converted to the expected type [T]
      */
 
-    public func from<T: Convertible>(field: String) -> [T]? where T == T.ConvertedType {
+    public func optionalFrom<T: Convertible>(field: String) -> [T]? where T == T.ConvertedType {
         return try? self.from(field: field)
     }
 
@@ -353,7 +353,7 @@ public struct Mapper {
                 nil if anything throws
      */
 
-    public func from<U: Convertible, T: Convertible>(field: String) -> [U: T]? where U == U.ConvertedType, T == T.ConvertedType {
+    public func optionalFrom<U: Convertible, T: Convertible>(field: String) -> [U: T]? where U == U.ConvertedType, T == T.ConvertedType {
         return try? self.from(field: field)
     }
 
@@ -397,7 +397,7 @@ public struct Mapper {
      nil if anything throws
      */
 
-    public func from<U: Convertible, T: Mappable>(field: String) -> [U: T]? where U == U.ConvertedType {
+    public func optionalFrom<U: Convertible, T: Mappable>(field: String) -> [U: T]? where U == U.ConvertedType {
         return try? self.from(field: field)
     }
 
@@ -410,9 +410,9 @@ public struct Mapper {
      - returns: The first non-nil value to be produced from the array of fields, or nil if none exist
      */
 
-    public func from<T: Convertible>(fields: [String]) -> T? where T == T.ConvertedType {
+    public func optionalFrom<T: Convertible>(fields: [String]) -> T? where T == T.ConvertedType {
         for field in fields {
-            if let value: T = try? self.from(field: field) {
+            if let value: T = self.from(field: field) {
                 return value
             }
         }
@@ -445,7 +445,7 @@ public struct Mapper {
 
      - returns: The date for the given field, or nil if field is not a string or doesn't match the format
      */
-    public func from(field: String, format: String) -> Date? {
+    public func optionalFrom(field: String, format: String) -> Date? {
         return try? self.from(field: field, format: format)
     }
 
@@ -481,7 +481,7 @@ public struct Mapper {
      */
 
     public func optionalFrom<T>(field: String, transformation: (Any?) throws -> T?) -> T? {
-        return (try? transformation(try? self.JSONFrom(field: field))).flatMap { $0 }
+        return (((try? transformation(try? self.JSONFrom(field: field))) as T??)).flatMap { $0 }
     }
 
     // MARK: - Private

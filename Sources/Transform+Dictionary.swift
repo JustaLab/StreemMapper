@@ -46,7 +46,7 @@ public extension Transform {
                 values T are the objects
      */
 
-    public static func toDictionary<T, U>(key getKey: @escaping (T) -> U) ->
+    static func toDictionary<T, U>(key getKey: @escaping (T) -> U) ->
         (_ object: Any?) throws -> [U: T] where T: Mappable, U: Hashable
     {
         return { object in

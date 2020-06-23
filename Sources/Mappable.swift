@@ -35,7 +35,7 @@ public protocol Mappable {
 
  */
 public extension Mappable{
-    public static func from(JSON: Any) -> Self? {
+    static func from(JSON: Any) -> Self? {
         if let inputValue = JSON as? [AnyHashable: Any]{
             return try? self.init(map: Mapper(JSON: inputValue))
         }
@@ -54,7 +54,7 @@ public extension Mappable{
  */
 public extension Array where Element: Mappable{
 
-    public static func from(JSON: Any, rootKey: String? = nil) -> [Element]? {
+    static func from(JSON: Any, rootKey: String? = nil) -> [Element]? {
         if let inputArray = JSON as? [[AnyHashable: Any]] {
             return inputArray.map({ try? Element(map: Mapper(JSON: $0))}).compactMap({$0})
         } else if let rootKey = rootKey, let inputDict = JSON as? [AnyHashable: Any] {

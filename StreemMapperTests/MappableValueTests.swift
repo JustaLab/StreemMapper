@@ -44,7 +44,7 @@ final class MappableValueTests: XCTestCase {
         struct Test: Mappable {
             let nest: Nested?
             init(map: Mapper) {
-                self.nest = map.from(field: "foo")
+                self.nest = map.optionalFrom(field: "foo")
             }
         }
 
@@ -79,7 +79,7 @@ final class MappableValueTests: XCTestCase {
         struct Test: Mappable {
             let nests: [Nested]?
             init(map: Mapper) {
-                self.nests = map.from(field: "nests")
+                self.nests = map.optionalFrom(field: "nests")
             }
         }
 
@@ -117,7 +117,7 @@ final class MappableValueTests: XCTestCase {
         struct Test: Mappable {
             let nests: [Nested]?
             init(map: Mapper) {
-                self.nests = map.from(field: "nests")
+                self.nests = map.optionalFrom(field: "nests")
             }
         }
 
@@ -187,7 +187,7 @@ final class MappableValueTests: XCTestCase {
         struct Test: Mappable {
             let nests: [String: Nested]?
             init(map: Mapper) {
-                self.nests = map.from(field: "nests")
+                self.nests = map.optionalFrom(field: "nests")
             }
         }
 
